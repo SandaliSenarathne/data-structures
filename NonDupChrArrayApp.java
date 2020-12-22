@@ -1,6 +1,3 @@
-package nondupchrarrayapp;
-
-
 class NonDupChrArray {
 
 	private char[] ch; // ref to array ch
