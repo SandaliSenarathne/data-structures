@@ -37,6 +37,17 @@ class StackArray {
 		}
 		return stackData[top];
 	 }
+	 /*
+	 public int peek() throws Exception{
+		try{
+			int popped = pop();
+			push(popped);
+			return popped;
+		}catch(Exception e){
+			throw new Exception(e);
+		}
+	 }
+	 */
 	 public void display() {
 		 /*
 		System.out.println("------Values in the stack------");
