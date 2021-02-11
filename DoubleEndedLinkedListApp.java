@@ -68,7 +68,6 @@ class DoubleEndedLinkedList{
 		return deletedNode;
 	}
 	
-	
 	public Node deleteRight() throws Exception{
 		
 		if(isEmpty()){
