@@ -56,7 +56,7 @@ class PriorityQueue{
 	}
 }
 
-class PriorityQueueApp{
+class DoublyLinekdListPriorityQueueApp{
 	public static void main(String[] args){
 		PriorityQueue q = new PriorityQueue();
 		q.display();
