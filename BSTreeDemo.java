@@ -13,6 +13,42 @@ class BSTNode {
 	public String toString(){
 		return "data -> "+data;
 	}
+	
+	public int minValue(){
+		if(this.leftChild == null){
+			return this.data;
+		}else{
+			return this.leftChild.minValue();
+		}
+	}
+	
+	public boolean remove(int data, BSTNode parent){
+		if(data < this.data){
+			if(this.leftChild != null){
+				return this.leftChild.remove(data, this);
+			}else{
+				return false;
+			}
+		}else if(data > this.data){
+			if(this.rightChild != null){
+				return this.rightChild.remove(data, this);
+			}else{
+				return false;
+			}
+		} else{
+			// here you have to delete the node
+			if(this.leftChild != null && this.rightChild != null){
+				//replace the data to be removed by it's successor
+				this.data = this.rightChild.minValue();
+				this.rightChild.remove(this.data, this);
+			}else if(parent.leftChild == this){
+				parent.leftChild = (this.leftChild == null)? this.rightChild : this.leftChild;
+			}else if(parent.rightChild == this){
+				parent.rightChild = (this.leftChild == null)? this.rightChild : this.leftChild;
+			}
+			return true;
+		}
+	}
 }
 
 class BSTree {
@@ -87,6 +123,20 @@ class BSTree {
 		}
 		return null;
 	}
+	
+	public boolean remove(int data){
+		if(root == null){
+			return false;
+		}
+		if(root.leftChild == null){
+			root = root.rightChild;
+			return true;
+		}else if(root.rightChild == null){
+			root = root.leftChild;
+			return true;
+		}
+		return root.remove(data, null);
+	}
 }
 
 public class BSTreeDemo {
@@ -102,13 +152,9 @@ public class BSTreeDemo {
 		t.addNode(6);
 		System.out.println("inorder");
 		t.inOrderTraversal(t.root);
-		System.out.println("preorder");
-		t.preOrderTraversal(t.root);
-		System.out.println("postorder");
-		t.postOrderTraversal(t.root);
-		System.out.println("find 1 ="+t.findNode(1));
-		System.out.println("find 8 ="+t.findNode(8));
-		System.out.println("find 5 ="+t.findNode(5));
-		System.out.println("find 6 ="+t.findNode(6));
+		System.out.println("--------------------------");
+		t.remove(31);
+		System.out.println("inorder");
+		t.inOrderTraversal(t.root);
 	}
 }
